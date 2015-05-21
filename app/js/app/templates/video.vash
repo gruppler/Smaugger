@@ -1,0 +1,4 @@
+<span class="name">@model.name</span>
+<video>
+  <source src="@model.path" tyle="@model.type"/>
+</video>

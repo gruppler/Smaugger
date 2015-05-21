@@ -1,0 +1,2 @@
+<button class="open">@model.Open</button>
+<input class="invisible pos-a" type="file" accept="video/mp4,video/x-m4v,video/*" multiple />

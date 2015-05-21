@@ -1,0 +1,15 @@
+{
+  "name": "smaugger",
+  "main": "index.html",
+  "version": "0.0.1",
+  "single-instance": true,
+  "window": {
+    "title": "Smaugger",
+    "width": 1000,
+    "height": 600,
+    "min_width": 500,
+    "min_height": 300,
+    "toolbar": true
+  },
+  "chromium-args": "--child-clean-exit"
+}

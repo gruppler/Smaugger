@@ -1,0 +1,20 @@
+{
+  "bitwise": false,
+  "boss": true,
+  "eqeqeq": false,
+  "indent": 2,
+  "quotmark": true,
+  "globalstrict": true,
+  "laxcomma": true,
+  "node": true,
+  "browser": true,
+  "devel": true,
+  "jquery": true,
+  "predef": [
+    "app",
+    "_",
+    "Backbone",
+    "$window",
+    "document"
+  ]
+}

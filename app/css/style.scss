@@ -1,0 +1,113 @@
+$page_padding: 1em 1.25em;
+
+$bg: #333;
+$fg: #fff;
+
+$bg_modal: rgba(0,0,0,0.5);
+
+$page_shadow: 0 1px 3px rgba(0,0,0,0.25);
+
+$button_radius: 3px;
+$button_shadow: 0 1px 3px rgba(0,0,0,0.2), inset 0 -1px 1px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5);
+$button_shadow_active: inset 0 1px 4px rgba(0,0,0,0.3);
+$button_fg: #fff;
+$button_bg: #3bd;
+$button_cta_fg: adjust-hue(saturate($button_fg, 10%), 190);
+$button_cta_bg: adjust-hue(saturate($button_bg, 10%), 190);
+$button_fg_hover: lighten($button_fg, 10%);
+$button_bg_hover: lighten($button_bg, 10%);
+$button_fg_active: darken($button_fg, 10%);
+$button_bg_active: darken($button_bg, 10%);
+$button_fg_disabled: lighten($button_fg, 30%);
+$button_bg_disabled: lighten($button_bg, 30%);
+$button_cta_fg_hover: lighten($button_cta_fg, 10%);
+$button_cta_bg_hover: lighten($button_cta_bg, 10%);
+$button_cta_fg_active: darken($button_cta_fg, 10%);
+$button_cta_bg_active: darken($button_cta_bg, 10%);
+$button_cta_fg_disabled: desaturate(lighten($button_cta_fg, 20%), 30%);
+$button_cta_bg_disabled: desaturate(lighten($button_cta_bg, 20%), 30%);
+
+html, body {
+  font-family: sans-serif;
+  font-size: 14px;
+  background: $bg;
+  color: $fg;
+  min-width: 77em;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+button,
+a.button{
+  border: 0 none;
+  padding: 0.5em 1em;
+  background: $button_bg;
+  color: $button_fg;
+  font-size: 1.1em;
+  box-shadow: $button_shadow;
+  border-radius: $button_radius;
+  white-space: nowrap;
+
+  &.cta {
+    background: $button_cta_bg;
+    color: $button_cta_fg;
+  }
+
+  &:hover {
+    color: $button_fg_hover;
+    background: $button_bg_hover;
+    &.cta {
+      background: $button_cta_bg_hover;
+      color: $button_cta_fg_hover;
+    }
+  }
+  &:active,
+  &.pressed {
+    color: $button_fg_active;
+    background: $button_bg_active;
+    box-shadow: $button_shadow_active;
+    &.cta {
+      background: $button_cta_bg_active;
+      color: $button_cta_fg_active;
+    }
+  }
+  &:disabled {
+    background: $button_bg_disabled;
+    box-shadow: none;
+    &.cta {
+      background: $button_cta_bg_disabled;
+      color: $button_cta_fg_disabled;
+    }
+  }
+}
+
+header {
+  padding: $page_padding;
+  box-shadow: $page_shadow;
+}
+
+#hotkey-help {
+  background-color: $bg_modal;
+
+  .content {
+    background-color: $bg;
+    padding: $page_padding;
+    line-height: 2em;
+
+    td span {
+      border-radius: $button_radius;
+      color: $button_fg;
+      background-color: $button_bg;
+      padding: 0.35em 0.75em;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+  }
+}
+
+#videos {}
