@@ -1,4 +1,6 @@
-<span class="name">@model.name</span>
+<button class="delete">x</button>
 <video>
   <source src="@model.path" tyle="@model.type"/>
 </video>
+<span class="name">@model.name</span><br/>
+<span class="size">@model.size</span>

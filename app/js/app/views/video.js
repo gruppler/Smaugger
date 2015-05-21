@@ -4,14 +4,32 @@ var VideoView = Backbone.View.extend({
   tagName: 'li',
 
   initialize: function(){
+    var that = this;
+
+    this.model.on('destroy', function(){
+      var views = app.view.videos.views;
+
+      that.remove();
+      views.splice(views.indexOf(that), 1);
+    });
+
     this.render();
   },
 
   render: function(){
-    app.render('video', this.$el, this.model.attributes);
+    var attr = _.clone(this.model.attributes);
+
+    attr.size = sizeOf(attr.size);
+    app.render('video', this.$el, attr);
   },
 
-  events: {}
+  events: {
+    'click button.delete': 'delete'
+  },
+
+  delete: function(){
+    this.model.destroy();
+  }
 });
 
 VideoView.List = Backbone.View.extend({
@@ -39,5 +57,13 @@ VideoView.List = Backbone.View.extend({
 
   events: {}
 });
+
+function sizeOf(bytes){
+  if(!bytes){
+    return '0.00 B';
+  }
+  var e = Math.floor(Math.log(bytes) / Math.log(1024));
+  return (bytes/Math.pow(1024, e)).toFixed(2)+' '+' KMGTP'.charAt(e)+'B';
+}
 
 module.exports = VideoView;

@@ -13,6 +13,7 @@ html, body {
 
 header {
   padding: 0.5em;
+  flex-shrink: 0;
 }
 
 .hidden {
@@ -27,6 +28,32 @@ a.button {
   & + button,
   & + a.button {
     margin-left: 1em;
+  }
+}
+
+#videos {
+  overflow: auto;
+
+  #video-list {
+    margin: 0;
+    padding: 0.5em 0;
+    list-style: none;
+    line-height: 1.5em;
+
+    li {
+      height: 4em;
+      padding: 0.5em 1em;
+
+      .name {}
+
+      .size {}
+
+      video {
+        height: 4em;
+        vertical-align: middle;
+        float: right;
+      }
+    }
   }
 }
 

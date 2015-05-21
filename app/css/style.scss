@@ -32,7 +32,6 @@ html, body {
   font-size: 14px;
   background: $bg;
   color: $fg;
-  min-width: 77em;
 
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -91,6 +90,21 @@ header {
   box-shadow: $page_shadow;
 }
 
+#videos {
+  #video-list {
+    li {
+      .name {}
+
+      .size {
+        font-size: 0.9em;
+        opacity: 0.65;
+      }
+
+      video {}
+    }
+  }
+}
+
 #hotkey-help {
   background-color: $bg_modal;
 
@@ -109,5 +123,3 @@ header {
     }
   }
 }
-
-#videos {}
