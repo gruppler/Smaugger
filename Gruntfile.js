@@ -374,7 +374,7 @@ module.exports = function (grunt) {
     grunt.file.write(resourcesPath + '/mac/Info.plist', infoPlist, {
       encoding: 'UTF8'
     });
-  })
+  });
 
   grunt.registerTask('dist-linux', [
     'jshint',
