@@ -4,25 +4,16 @@
   "description": "",
   "keywords": [],
 
-    "homepage": "https://github.com/gruppler/smaugger",
-    "bugs": "https://github.com/gruppler/smaugger/issues",
-    "author": {
-      "name": "Craig Laparo",
-      "email": "",
-      "url": "https://github.com/gruppler"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git://github.com/gruppler/smaugger.git"
-    },
-
-  "dependencies": {
-    "jquery": "latest",
-    "underscore": "latest",
-    "backbone": "latest",
-    "backbone.localstorage": "latest",
-    "bluebird": "latest",
-    "vash": "latest"
+  "homepage": "https://github.com/gruppler/smaugger",
+  "bugs": "https://github.com/gruppler/smaugger/issues",
+  "author": {
+    "name": "Craig Laparo",
+    "email": "",
+    "url": "https://github.com/gruppler"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gruppler/smaugger.git"
   },
 
   "devDependencies": {

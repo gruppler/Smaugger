@@ -11,5 +11,15 @@
     "min_height": 300,
     "toolbar": true
   },
+
+  "dependencies": {
+    "jquery": "latest",
+    "underscore": "latest",
+    "backbone": "latest",
+    "backbone.localstorage": "latest",
+    "bluebird": "latest",
+    "vash": "latest"
+  },
+
   "chromium-args": "--child-clean-exit"
 }
