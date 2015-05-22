@@ -97,7 +97,7 @@ module.exports = new (Backbone.View.extend({
       }
     });
 
-    app.render('header', $('header'), app.t);
+    app.render('header', $('header'), { t: app.t, config: app.config.attributes });
     app.render('hotkey-help', $('#hotkey-help .content'), { hotkeys: hotkeys });
 
     this.$el.on('contextmenu', function(event){

@@ -1,2 +1,5 @@
-<button class="open">@model.Open</button>
-<input class="invisible pos-a" type="file" accept="video/mp4,video/x-m4v,video/*" multiple />
+<div class="buttons">
+  <button class="open">@model.t.Open</button>
+  <input class="invisible pos-a" type="file" accept="video/mp4,video/x-m4v,video/*" multiple />
+</div>
+<input type="text" name="" id="group-regex" value="@model.config.group_regex" />

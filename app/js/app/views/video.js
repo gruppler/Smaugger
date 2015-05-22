@@ -1,7 +1,7 @@
 'use strict';
 
 var VideoView = Backbone.View.extend({
-  tagName: 'li',
+  tagName: 'tr',
 
   initialize: function(){
     var that = this;
@@ -33,7 +33,7 @@ var VideoView = Backbone.View.extend({
 });
 
 VideoView.List = Backbone.View.extend({
-  el: $('#video-list'),
+  el: $('#video-list-content'),
 
   initialize: function(){
     _.bindAll(this, 'render', 'append');
