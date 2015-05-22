@@ -1,5 +1,3 @@
-$page_padding: 1em 1.25em;
-
 $bg: #333;
 $bg-alt: #222;
 $fg: #fff;
@@ -89,7 +87,6 @@ a.button{
 }
 
 header {
-  padding: $page_padding;
   box-shadow: $page_shadow;
   z-index: 1;
   display: flex;
@@ -147,7 +144,6 @@ header {
 
   .content {
     background-color: $bg;
-    padding: $page_padding;
     line-height: 2em;
 
     td span {

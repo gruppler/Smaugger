@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = new (Backbone.Model.extend({
+var config = new (Backbone.Model.extend({
   defaults: {
-    group_regex: '^(\\w+)_.*_P(\\d+)_.*'
+    group_regex: '^(\\w+).*_P(\\d+)_.*'
   },
 
   localStorage: new Backbone.LocalStorage('config'),
@@ -10,3 +10,7 @@ module.exports = new (Backbone.Model.extend({
   initialize: function(){}
 
 }))({id: 1});
+
+config.fetch();
+
+module.exports = config;

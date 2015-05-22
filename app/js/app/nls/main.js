@@ -1,5 +1,5 @@
 module.exports = {
-  AppTitle: "Smaug",
+  AppTitle: "Smaugger",
 
   Open: "Open",
   File: "File"

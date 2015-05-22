@@ -1,3 +1,5 @@
+$page_padding: 1em;
+
 html, body {
   margin: 0;
   padding: 0;
@@ -12,7 +14,7 @@ html, body {
 }
 
 header {
-  padding: 0.5em;
+  padding: $page_padding;
   flex-shrink: 0;
 }
 
@@ -45,9 +47,17 @@ a.button {
       list-style: none;
       line-height: 1.25em;
 
+      tr:first-child td {
+        padding-top: $page_padding;
+      }
+      tr:last-child td {
+        padding-bottom: $page_padding;
+      }
+
       td {
         height: 4em;
-        padding: 0.5em 1em;
+        padding: $page_padding/2 $page_padding;
+
 
         &.buttons {
           width: 1em;
@@ -84,6 +94,7 @@ a.button {
 
   .content {
     overflow: auto;
+    padding: $page_padding;
   }
 
   body.hotkey-help & {

@@ -7,6 +7,7 @@ var hotkeys = {
     key: '+191',
     description: t.Toggle_hotkey_help,
     action: function(event){
+      app.capture_event(event);
       app.view.toggle_hotkey_help(event);
     }
   }],
