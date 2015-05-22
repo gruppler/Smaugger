@@ -13,6 +13,10 @@ module.exports = new (Backbone.View.extend({
           String.fromCharCode(event.which).toLocaleLowerCase() :
       event.which;
 
+      if($('input:text:focus, [contenteditable]:focus').length){
+        return;
+      }
+
       if(key == 46){
         // Backspace -> Del
         key = 8;
