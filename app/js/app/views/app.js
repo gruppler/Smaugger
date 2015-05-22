@@ -122,9 +122,10 @@ module.exports = new (Backbone.View.extend({
   events: {
     'click #hotkey-help': 'toggle_hotkey_help',
     'click button.open': 'browse',
+    'click button.execute': 'execute',
     'change input[type=file]': 'open_files',
-    'keyup #group-regex': 'change_grouping',
-    'change #group-regex': 'change_grouping'
+    'keyup #group-regex': 'change_group_regex',
+    'change #group-regex': 'change_group_regex'
   },
 
   toggle_hotkey_help: function(){
@@ -135,12 +136,16 @@ module.exports = new (Backbone.View.extend({
     this.$('input[type=file]').click();
   },
 
+  execute: function(){
+    console.log('execute');
+  },
+
   open_files: function(event){
     app.videos.open_files(event.originalEvent.target.files);
     this.$('input[type=file]').val('');
   },
 
-  change_grouping: function(event){
+  change_group_regex: function(event){
     var regex = $(event.currentTarget).val();
 
     if(regex != app.config.get('group_regex')){

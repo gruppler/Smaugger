@@ -1,5 +1,6 @@
 $bg: #333;
-$bg-alt: #222;
+$bg-dark: #222;
+$bg-alt: #282828;
 $fg: #fff;
 $fg-light: #888;
 
@@ -31,7 +32,7 @@ $button_cta_bg_disabled: desaturate(lighten($button_cta_bg, 20%), 30%);
 html, body {
   font-family: sans-serif;
   font-size: 14px;
-  background: $bg;
+  background: $bg-dark;
   color: $fg;
 
   -webkit-touch-callout: none;
@@ -87,6 +88,7 @@ a.button{
 }
 
 header {
+  background: $bg;
   box-shadow: $page_shadow;
   z-index: 1;
   display: flex;
@@ -103,12 +105,15 @@ header {
 
   #group-regex {
     font-family: monospace;
-    margin-left: 1em;
+    margin: 0 1em;
     flex-grow: 1;
   }
 }
 
 #videos {
+  background: $bg;
+  box-shadow: $page_shadow;
+
   #video-list {
     border-collapse: collapse;
 
@@ -116,13 +121,11 @@ header {
       tr.even {
         background: $bg-alt;
       }
+      tr.odd {
+        background: $bg;
+      }
       tr.disabled {
         opacity: 0.25;
-      }
-      tr.odd + tr.even,
-      tr.even + tr.odd,
-      tr.disabled {
-        border-top: 1px solid #000;
       }
 
       td {
