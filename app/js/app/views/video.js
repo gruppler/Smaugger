@@ -21,6 +21,9 @@ var VideoView = Backbone.View.extend({
 
     attr.size = sizeOf(attr.size);
     app.render('video', this.$el, attr);
+    this.$('video').on('loadedmetadata', function(){
+      console.log(this.duration);
+    });
   },
 
   events: {
