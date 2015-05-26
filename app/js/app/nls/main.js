@@ -1,6 +1,7 @@
 module.exports = {
-  AppTitle: "Smaug",
+  AppTitle: "Smaugger",
 
-  Open: "Open",
-  File: "File"
+  Execute: "Execute",
+  File: "File",
+  Open: "Open"
 };

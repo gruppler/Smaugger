@@ -5,10 +5,10 @@
   "single-instance": true,
   "window": {
     "title": "Smaugger",
-    "width": 1000,
+    "width": 600,
     "height": 600,
-    "min_width": 500,
-    "min_height": 300,
+    "min_width": 450,
+    "min_height": 160,
     "toolbar": true
   },
 

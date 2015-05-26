@@ -1,7 +1,7 @@
 'use strict';
 
 var VideoView = Backbone.View.extend({
-  tagName: 'li',
+  tagName: 'tr',
 
   initialize: function(){
     var that = this;
@@ -13,6 +13,7 @@ var VideoView = Backbone.View.extend({
       views.splice(views.indexOf(that), 1);
     });
 
+    this.$el.data('model', this.model);
     this.render();
   },
 
@@ -36,14 +37,15 @@ var VideoView = Backbone.View.extend({
 });
 
 VideoView.List = Backbone.View.extend({
-  el: $('#video-list'),
+  el: $('#video-list-content'),
 
   initialize: function(){
-    _.bindAll(this, 'render', 'append');
+    _.bindAll(this, 'render', 'append', 'change_group_regex');
 
     this.views = [];
     this.model.on('reset', this.render);
     this.model.on('add', this.append);
+    $window.on('change_group_regex', this.change_group_regex);
   },
 
   render: function(){
@@ -53,9 +55,61 @@ VideoView.List = Backbone.View.extend({
   },
 
   append: function(model){
-    var view = new VideoView({ model: model });
+    var view = new VideoView({ model: model })
+      , group = model.group()
+      , prev, prev_group;
+
+    if(group === null){
+      view.$el.addClass('disabled');
+      view.is_even = false;
+    }else if(this.views.length){
+      prev = this.views[this.views.length - 1];
+      prev_group = prev.model.group();
+
+      if(_.isEqual(group, prev_group)){
+        view.$el.addClass(prev.is_even ? 'even' : 'odd');
+        view.is_even = prev.is_even;
+      }else{
+        view.$el.addClass(prev.is_even ? 'odd' : 'even');
+        view.is_even = !prev.is_even;
+      }
+    }else{
+      view.$el.addClass('even');
+      view.is_even = true;
+    }
     this.views.push(view);
     this.$el.append(view.$el);
+  },
+
+  change_group_regex: function(){
+    var i, view, prev, group, prev_group;
+
+    for(i = 0; i < this.views.length; i++){
+      view = this.views[i];
+      group = view.model.group();
+
+      view.$el.removeClass('disabled even odd');
+
+      if(group === null){
+        view.$el.addClass('disabled');
+        view.is_even = false;
+      }else if(i > 0){
+        prev = this.views[i - 1];
+        prev_group = prev.model.group();
+
+        if(_.isEqual(group, prev_group)){
+          view.$el.addClass(prev.is_even ? 'even' : 'odd');
+          view.is_even = prev.is_even;
+        }else{
+          view.$el.addClass(prev.is_even ? 'odd' : 'even');
+          view.is_even = !prev.is_even;
+        }
+      }else{
+        view.$el.addClass('even');
+        view.is_even = true;
+      }
+    }
+
   },
 
   events: {}

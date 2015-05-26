@@ -1,3 +1,5 @@
+$page_padding: 1em;
+
 html, body {
   margin: 0;
   padding: 0;
@@ -12,7 +14,7 @@ html, body {
 }
 
 header {
-  padding: 0.5em;
+  padding: $page_padding;
   flex-shrink: 0;
 }
 
@@ -32,26 +34,47 @@ a.button {
 }
 
 #videos {
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   #video-list {
-    margin: 0;
-    padding: 0.5em 0;
-    list-style: none;
-    line-height: 1.5em;
+    width: 100%;
 
-    li {
-      height: 4em;
-      padding: 0.5em 1em;
+    #video-list-content {
+      width: 100%;
+      margin: 0;
+      padding: 0.5em 0;
+      list-style: none;
+      line-height: 1.25em;
 
-      .name {}
+      tr:first-child td {
+        padding-top: $page_padding;
+      }
+      tr:last-child td {
+        padding-bottom: $page_padding;
+      }
 
-      .size {}
-
-      video {
+      td {
         height: 4em;
-        vertical-align: middle;
-        float: right;
+        padding: $page_padding/2 $page_padding;
+
+
+        &.buttons {
+          width: 1em;
+        }
+
+        &.info {
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        &.video {
+          width: 1em;
+
+          video {
+            height: 4em;
+          }
+        }
       }
     }
   }
@@ -71,6 +94,7 @@ a.button {
 
   .content {
     overflow: auto;
+    padding: $page_padding;
   }
 
   body.hotkey-help & {

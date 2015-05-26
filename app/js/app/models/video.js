@@ -11,6 +11,11 @@ var Video = Backbone.Model.extend({
     if(!this.has('order')){
       this.set('order', app.videos.length + 1);
     }
+  },
+
+  group: function(){
+    var matches = this.get('name').match(app.group_regex);
+    return matches ? matches.splice(1) : null;
   }
 });
 

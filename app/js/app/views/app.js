@@ -13,6 +13,10 @@ module.exports = new (Backbone.View.extend({
           String.fromCharCode(event.which).toLocaleLowerCase() :
       event.which;
 
+      if($('input:text:focus, [contenteditable]:focus').length){
+        return;
+      }
+
       if(key == 46){
         // Backspace -> Del
         key = 8;
@@ -97,7 +101,7 @@ module.exports = new (Backbone.View.extend({
       }
     });
 
-    app.render('header', $('header'), app.t);
+    app.render('header', $('header'), { t: app.t, config: app.config.attributes });
     app.render('hotkey-help', $('#hotkey-help .content'), { hotkeys: hotkeys });
 
     this.$el.on('contextmenu', function(event){
@@ -116,8 +120,12 @@ module.exports = new (Backbone.View.extend({
   },
 
   events: {
+    'click #hotkey-help': 'toggle_hotkey_help',
     'click button.open': 'browse',
-    'change input[type=file]': 'open_files'
+    'click button.execute': 'execute',
+    'change input[type=file]': 'open_files',
+    'keyup #group-regex': 'change_group_regex',
+    'change #group-regex': 'change_group_regex'
   },
 
   toggle_hotkey_help: function(){
@@ -128,8 +136,22 @@ module.exports = new (Backbone.View.extend({
     this.$('input[type=file]').click();
   },
 
+  execute: function(){
+    console.log('execute');
+  },
+
   open_files: function(event){
     app.videos.open_files(event.originalEvent.target.files);
     this.$('input[type=file]').val('');
+  },
+
+  change_group_regex: function(event){
+    var regex = $(event.currentTarget).val();
+
+    if(regex != app.config.get('group_regex')){
+      app.config.save('group_regex', regex);
+    }
+
+    app.capture_event(event);
   }
 }))();
