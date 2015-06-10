@@ -12,13 +12,14 @@ global.Backbone.LocalStorage = require('backbone.localstorage');
 global.$window = global.$(window);
 global.document = window.document;
 
-global.$.fn.saveOrder = function(selector){
-  this.children(selector).each(function(i){
-    var model = global.$(this).data('model');
-    if(model){
-      model.save('order', i + 1, { silent: true });
-    }
-  });
+global.$.fn.appendAt = function(content, i){
+  if(i < 1){
+    this.prepend(content);
+  }else if(i >= this.children().length){
+    this.append(content);
+  }else{
+    $(content).insertBefore(this.children().eq(i));
+  }
 
   return this;
 };
