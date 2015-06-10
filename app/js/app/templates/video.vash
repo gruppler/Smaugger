@@ -7,6 +7,6 @@
 </td>
 <td class="video">
   <video>
-    <source src="@model.path" tyle="@model.type"/>
+    <source src="@model.path" type="@model.type"/>
   </video>
 </td>
