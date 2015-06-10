@@ -8,9 +8,9 @@ var Video = Backbone.Model.extend({
   localStorage: new Backbone.LocalStorage('videos'),
 
   initialize: function(){
-    if(!this.has('order')){
-      this.set('order', app.videos.length + 1);
-    }
+//    if(!this.has('order')){
+//      this.set('order', app.videos.length + 1);
+//    }
   },
 
   group: function(){
@@ -22,7 +22,7 @@ var Video = Backbone.Model.extend({
 Video.List = Backbone.Collection.extend({
   model: Video,
   localStorage: new Backbone.LocalStorage('videos'),
-  comparator: 'order',
+  comparator: 'name',
   open_files: function(files){
     var that = this
       , path;

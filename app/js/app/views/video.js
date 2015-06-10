@@ -54,7 +54,7 @@ VideoView.List = Backbone.View.extend({
     this.model.each(this.append);
   },
 
-  append: function(model){
+  append: function(model, order){
     var view = new VideoView({ model: model })
       , group = model.group()
       , prev, prev_group;
@@ -78,7 +78,11 @@ VideoView.List = Backbone.View.extend({
       view.is_even = true;
     }
     this.views.push(view);
-    this.$el.append(view.$el);
+    if(_.isNumber(order)){
+      this.$el.appendAt(view.$el, order);
+    }else{
+      this.$el.append(view.$el);
+    }
   },
 
   change_group_regex: function(){
