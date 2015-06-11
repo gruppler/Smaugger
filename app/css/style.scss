@@ -1,5 +1,6 @@
 $bg: #333;
 $bg-dark: #222;
+$bg-light: #444;
 $bg-alt: #282828;
 $fg: #fff;
 $fg-light: #888;
@@ -141,6 +142,11 @@ header {
           font-size: 1.1em;
           padding: 0.2em;
           margin-left: -0.2em;
+
+          &:hover {
+            cursor: text;
+            background-color: $bg-light;
+          }
 
           &[contenteditable=true] {
             background: $fg;
