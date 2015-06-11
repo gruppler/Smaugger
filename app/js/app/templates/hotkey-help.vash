@@ -1,6 +1,6 @@
 <table>
   <tbody>
-  @model.hotkeys.map(function(k){
+  @model.hotkeys.forEach(function(k){
     <tr>
       <td>@html.raw(k.key)</td>
       <td>@html.raw(k.description)</td>
