@@ -6,6 +6,8 @@ var VideoView = Backbone.View.extend({
   initialize: function(){
     var that = this;
 
+    _.bindAll(this, 'render', 'update_name', 'update_duration', 'edit_name');
+
     this.model.on('destroy', function(){
       var views = app.view.videos.views;
 
@@ -18,21 +20,49 @@ var VideoView = Backbone.View.extend({
   },
 
   render: function(){
-    var attr = _.clone(this.model.attributes);
+    var that = this
+      , attr = _.clone(this.model.attributes);
+
+    this.model.on('change:name', this.update_name);
+    this.model.on('change:duration', this.update_duration);
 
     attr.size = sizeOf(attr.size);
-    app.render('video', this.$el, attr);
-    this.$('video').on('loadedmetadata', function(){
-      console.log(this.duration);
+    attr.duration = duration(attr.duration);
+
+    app.render('video', this.$el, attr, function(){
+      if(!that.model.has('duration')){
+        that.$('video').on('loadedmetadata', function(){
+          that.model.save('duration', this.duration);
+        });
+      }
     });
   },
 
+  update_name: function(){
+    this.$('.name').html(this.model.get('name'));
+    $window.trigger('change_group_regex');
+  },
+
+  update_duration: function(){
+    this.$('.duration').html(duration(this.model.get('duration')));
+  },
+
   events: {
-    'click button.delete': 'delete'
+    'click button.delete': 'delete',
+    'click .name': 'edit_name',
+    'click video': 'show_video'
   },
 
   delete: function(){
     this.model.destroy();
+  },
+
+  edit_name: function(){
+    app.view.edit(this.model, 'name', this.$('.name'));
+  },
+
+  show_video: function(event){
+    console.log(event.currentTarget.duration);
   }
 });
 
@@ -125,6 +155,26 @@ function sizeOf(bytes){
   }
   var e = Math.floor(Math.log(bytes) / Math.log(1024));
   return (bytes/Math.pow(1024, e)).toFixed(2)+' '+' KMGTP'.charAt(e)+'B';
+}
+
+function duration(seconds){
+  var h, m, s;
+
+  h = Math.floor(seconds/3600) || 0;
+  m = Math.floor(seconds/60) || 0;
+  s = Math.round(seconds % 60) || 0;
+
+  if(h < 10){
+    h = '0'+h;
+  }
+  if(m < 10){
+    m = '0'+m;
+  }
+  if(s < 10){
+    s = '0'+s;
+  }
+
+  return h+':'+m+':'+s;
 }
 
 module.exports = VideoView;

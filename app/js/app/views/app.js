@@ -10,10 +10,16 @@ module.exports = new (Backbone.View.extend({
 
     $window.keydown(function(event){
       var key = event.which >= 65 && event.which <= 90 ?
-          String.fromCharCode(event.which).toLocaleLowerCase() :
-      event.which;
+            String.fromCharCode(event.which).toLowerCase() : event.which;
 
-      if($('input:text:focus, [contenteditable]:focus').length){
+      if($('input:text:focus, [contenteditable=true]:focus').length){
+        if(key == 13){
+          app.capture_event(event);
+          that.stop_editing();
+        }else if(key == 27){
+          app.capture_event(event);
+          that.cancel_editing();
+        }
         return;
       }
 
@@ -46,8 +52,7 @@ module.exports = new (Backbone.View.extend({
 
     $window.keyup(function(event){
       var key = event.which >= 65 && event.which <= 90 ?
-          String.fromCharCode(event.which) :
-      event.which;
+            String.fromCharCode(event.which).toLowerCase() : event.which;
 
       if(key == 16){
         that.shiftKey = false;
@@ -119,13 +124,48 @@ module.exports = new (Backbone.View.extend({
     });
   },
 
+  edit: function(model, attr, $el){
+    this.stop_editing();
+    this.editing = {
+      model: model,
+      attr: attr,
+      $el: $el
+    };
+    $el.prop('contenteditable', true);
+  },
+
+  stop_editing: function(){
+    if(this.editing){
+      this.editing.model.save(this.editing.attr, this.editing.$el.text());
+      this.editing.$el.prop('contenteditable', false);
+      this.editing = null;
+    }
+  },
+
+  cancel_editing: function(){
+    if(this.editing){
+      this.editing.$el.text(this.editing.model.get(this.editing.attr));
+      this.editing.$el.prop('contenteditable', false);
+      this.editing = null;
+    }
+  },
+
   events: {
+    'mousedown': 'mousedown',
     'click #hotkey-help': 'toggle_hotkey_help',
     'click button.open': 'browse',
     'click button.execute': 'execute',
     'change input[type=file]': 'open_files',
     'keyup #group-regex': 'change_group_regex',
     'change #group-regex': 'change_group_regex'
+  },
+
+  mousedown: function(event){
+    if(this.editing){
+      if(!(this.editing.$el.is(event.target) || this.editing.$el.has(event.target).length)){
+        this.stop_editing();
+      }
+    }
   },
 
   toggle_hotkey_help: function(){

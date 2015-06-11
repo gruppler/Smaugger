@@ -32,13 +32,16 @@ global.app = {
     return require(path.join(process.cwd(),'./js/app/'+file));
   },
 
-  render: function(template, $el, model){
+  render: function(template, $el, model, callback){
     global.app.fs.readFile(
       'js/app/templates/'+template+'.vash',
       { encoding: 'utf8' },
       function(err, data){
         if(err){ throw err; }
         $el.html(vash.compile(data)(model));
+        if(global._.isFunction(callback)){
+          callback();
+        }
       }
     );
   },

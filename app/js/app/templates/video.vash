@@ -2,8 +2,11 @@
   <button class="delete">x</button>
 </td>
 <td class="info">
-  <span class="name" contenteditable>@model.name</span><br/>
-  <span class="size">@model.size</span>
+  <div class="name">@model.name</div>
+  <div class="info">
+    <span class="duration">@model.duration</span>
+    <span class="size">@model.size</span>
+  </div>
 </td>
 <td class="video">
   <video>
