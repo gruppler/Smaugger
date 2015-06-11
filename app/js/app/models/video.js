@@ -7,11 +7,7 @@ var Video = Backbone.Model.extend({
 
   localStorage: new Backbone.LocalStorage('videos'),
 
-  initialize: function(){
-//    if(!this.has('order')){
-//      this.set('order', app.videos.length + 1);
-//    }
-  },
+  initialize: function(){},
 
   group: function(){
     var matches = this.get('name').match(app.group_regex);
@@ -33,6 +29,7 @@ Video.List = Backbone.Collection.extend({
         console.log('video:', file);
         if(app.videos.pluck('path').indexOf(path) < 0){
           that.add({
+            date: file.lastModified,
             name: file.name,
             path: path,
             size: file.size,
