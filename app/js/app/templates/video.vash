@@ -1,5 +1,7 @@
 <td class="buttons">
-  <button class="delete">x</button>
+  <button class="delete">
+    <span class="icon-x"></span>
+  </button>
 </td>
 <td class="info">
   <div class="name">@model.name</div>

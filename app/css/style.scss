@@ -129,6 +129,13 @@ header {
       }
 
       td {
+        &.buttons button {
+          width: 2em;
+          height: 2em;
+          padding: 0.5em;
+          text-align: center;
+        }
+
         .name {
           text-overflow: ellipsis;
           font-size: 1.1em;

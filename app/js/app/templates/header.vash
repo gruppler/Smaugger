@@ -1,8 +1,14 @@
 <div class="buttons">
-  <button class="open">@model.t.Open</button>
+  <button class="open">
+    <span class="icon-library_add"></span>
+    @model.t.Open
+  </button>
   <input class="invisible pos-a" type="file" accept="video/mp4,video/x-m4v,video/*" multiple />
 </div>
 <input type="text" name="" id="group-regex" value="@model.config.group_regex" />
 <div class="buttons">
-  <button class="execute">@model.t.Execute</button>
+  <button class="execute">
+    <span class="icon-check"></span>
+    @model.t.Execute
+  </button>
 </div>
