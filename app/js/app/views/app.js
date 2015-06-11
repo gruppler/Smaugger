@@ -131,7 +131,7 @@ module.exports = new (Backbone.View.extend({
       attr: attr,
       $el: $el
     };
-    $el.prop('contenteditable', true);
+    $el.prop('contenteditable', true).focus();
   },
 
   stop_editing: function(){

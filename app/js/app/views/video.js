@@ -30,8 +30,15 @@ var VideoView = Backbone.View.extend({
     attr.duration = duration(attr.duration);
 
     app.render('video', this.$el, attr, function(){
+      that.$video = that.$('video');
+      that.video = that.$video[0];
+
+      that.$video.on('timeupdate', function(){
+        that.update_duration(that.video.currentTime);
+      });
+
       if(!that.model.has('duration')){
-        that.$('video').on('loadedmetadata', function(){
+        that.$video.on('loadedmetadata', function(){
           that.model.save('duration', this.duration);
         });
       }
@@ -43,14 +50,16 @@ var VideoView = Backbone.View.extend({
     $window.trigger('change_group_regex');
   },
 
-  update_duration: function(){
-    this.$('.duration').html(duration(this.model.get('duration')));
+  update_duration: function(time){
+    time = _.isNumber(time) ? time : this.model.get('duration');
+    this.$('.duration').html(duration(time));
   },
 
   events: {
     'click button.delete': 'delete',
     'click .name': 'edit_name',
-    'click video': 'show_video'
+    'click video': 'play_pause_video',
+    'contextmenu video': 'fullscreen_video'
   },
 
   delete: function(){
@@ -61,8 +70,21 @@ var VideoView = Backbone.View.extend({
     app.view.edit(this.model, 'name', this.$('.name'));
   },
 
-  show_video: function(event){
-    console.log(event.currentTarget.duration);
+  play_pause_video: function(){
+    if(this.video.paused){
+      if(app.view.playing){
+        app.view.playing.pause();
+      }
+      this.video.play();
+      app.view.playing = this.video;
+    }else{
+      this.video.pause();
+      app.view.playing = null;
+    }
+  },
+
+  fullscreen_video: function(){
+    this.video.webkitRequestFullscreen();
   }
 });
 
@@ -162,7 +184,7 @@ function duration(seconds){
 
   h = Math.floor(seconds/3600) || 0;
   m = Math.floor(seconds/60) || 0;
-  s = Math.round(seconds % 60) || 0;
+  s = Math.floor(seconds % 60) || 0;
 
   if(h < 10){
     h = '0'+h;

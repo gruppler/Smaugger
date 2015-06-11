@@ -10,6 +10,12 @@ var hotkeys = {
       app.capture_event(event);
       app.view.toggle_hotkey_help(event);
     }
+  },{
+    key: '27',
+    description: t.Exit_fullscreen,
+    action: function(){
+      document.webkitExitFullscreen();
+    }
   }],
 
   key_text: function(key){

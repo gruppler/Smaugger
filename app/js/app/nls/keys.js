@@ -17,5 +17,6 @@ module.exports = {
   "rclick": "Right-click",
   "dblclick": "Double-click",
 
+  Exit_fullscreen: "Exit fullscreen",
   Toggle_hotkey_help: "Toggle hotkey help"
 };

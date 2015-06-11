@@ -47,15 +47,7 @@ a.button {
       list-style: none;
       line-height: 1.25em;
 
-      tr:first-child td {
-        padding-top: $page_padding;
-      }
-      tr:last-child td {
-        padding-bottom: $page_padding;
-      }
-
       td {
-        height: 4em;
         padding: $page_padding/2 $page_padding;
 
 
@@ -69,10 +61,10 @@ a.button {
         }
 
         &.video {
-          width: 1em;
+          width: 10em;
 
           video {
-            height: 4em;
+            width: 10em;
           }
         }
       }
